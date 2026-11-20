@@ -180,3 +180,39 @@ When a phase fails validation (e.g., architectural mismatch, license violation, 
    - Log the precise failure reason under the phase's `Incident Log` section.
 3. **Zero Orphan Residue:**
    - Verify that no half-installed packages or residual config edits linger in `package.json` or environment files.
+
+---
+
+## 8. Autonomous Project Lifecycle & Vibe-Coding Governance
+
+When orchestrating a full software project from `.specs/` and `.agent/state.md`, enforce these five operational rules:
+
+### 1. Zero-Friction Start & Resume Triggers
+- **On `"start project"` / `"bắt đầu dự án"`:**
+  1. Read `.specs/02_ARCHITECTURE.md` and `.specs/01_PRD.md` (index/headers only).
+  2. Initialize `.agent/state.md` with all numbered phases, tasks, risk levels (`trivial` vs `standard`), and required prerequisites.
+  3. Trigger the **Upfront Prerequisite Alert** (see Rule 2) before writing code.
+  4. Begin Phase 1 immediately once prerequisites are confirmed.
+- **On `"resume project"` / `"tiếp tục dự án"`:**
+  1. Read `.agent/state.md` exclusively first.
+  2. Locate the first `IN_PROGRESS` or unchecked `- [ ]` task.
+  3. Load **only** the active phase's spec slice (Lazy Context Slicing) and resume execution without re-reading completed phases or duplicating work.
+
+### 2. Proactive Prerequisite & Resource Alerting
+- Never let a phase stall mid-execution due to missing credentials, CLIs, or accounts.
+- **Upfront (Phase 0) & Just-In-Time (Before Phase Entry):** Emit a concise Prerequisite Alert specifying:
+  - **What:** Exact tool, CLI, API key, or service account required.
+  - **Where & How:** Direct URL or installation command.
+  - **When:** Exact phase that needs it (e.g., *"Needed before Phase 3: Auth & DB"*).
+  - **Config Target:** Exact `.env` key name (and update `.env.example`).
+
+### 3. 100% English Documentation Mandate
+- All generated project specifications (`.specs/*`), state trackers (`.agent/state.md`), `README.md`, commit messages, and inline code comments MUST be written strictly in clear, professional **English**—regardless of the user's conversation language.
+
+### 4. GitHub Phase Branching & Smart Skip Policy
+- **Standard Phases (`risk: standard` | `critical`):** Upon passing Gate 3 (Verification), commit all phase changes (Sole Author, zero `Co-authored-by:`), create/checkout a dedicated phase branch (e.g., `phase/02-db-auth`), and push to `origin` (`git push -u origin phase/02-db-auth`).
+- **Smart Skip (`risk: trivial`):** For simple, deterministic boilerplate phases that cannot fail (e.g., initial directory layout, static lint config), skip creating a separate remote branch and batch the commit into the next standard phase's branch, while still checking off the tasks in `.agent/state.md`.
+
+### 5. Mandatory Localhost Preview Gate (Pre-Deploy)
+- **Hard Stop Before Deployment:** Never execute cloud deployment (`vercel`, `fly deploy`, `docker push`, `terraform apply`) until the application is verified on `http://localhost:<PORT>`.
+- **Verification Steps:** Start the local dev/production server, verify HTTP 200 and zero fatal console/runtime errors, and present the exact `http://localhost:<PORT>` URL to the user for visual and functional sign-off.
