@@ -85,3 +85,13 @@ Agent uses targeted string replacement or exact diff tools.
 
 ### Golden Rule for Code Modification:
 Always locate the exact target block, include sufficient leading/trailing context for uniqueness, and execute a targeted replacement. Never re-emit unchanged file headers, imports, or sibling functions unless a project-wide refactoring is explicitly mandated.
+
+---
+
+## 5. Git Commit & Push Attribution Mandate (Sole Author Enforcement)
+
+When committing and pushing changes across repositories:
+
+- **Sole Author Integrity:** All commits and git history must strictly identify exactly **one author** (the primary developer configured in `git config user.name` and `git config user.email`).
+- **Strict Prohibition on Co-Authors:** Never include `Co-authored-by:` git trailers, multiple author trailers, or secondary attribution tags in commit messages or git push operations.
+- **Clean Commit Hygiene:** Commits must be focused, atomic, and free of extraneous authorship metadata or AI tool signature trailers unless explicitly requested.

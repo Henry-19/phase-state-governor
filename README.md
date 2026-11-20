@@ -43,6 +43,7 @@ D:\SkillAgent\phase-state-governor\
 - **Single Source of Truth (SSOT):** Progress is maintained exclusively in `.agent/state.md`.
 - **Atomic Targeted Edits:** Strictly updates target task lines in-place (`edit_file`) instead of re-writing the entire state file.
 - **Zero-Junk Workspace:** Prohibits backup files, scratch scripts, or unmanaged temporary files. Mandates an automated workspace sweep (`git status --porcelain`) prior to phase completion.
+- **Sole Author Git Attribution:** Mandates strictly one author for all git commits and push operations (`git config user.name` / `user.email`). Absolute ban on `Co-authored-by:` trailers or multiple co-authors.
 
 ### 3. Integrated Legal & Compliance Guardrails
 - **License Whitelist:** Pre-flight gate check requiring permissible licenses (`MIT`, `Apache-2.0`, `BSD`) and blocking copyleft (`GPL`, `AGPL`, `SSPL`) in proprietary environments.

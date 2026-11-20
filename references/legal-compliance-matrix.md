@@ -56,3 +56,6 @@ AI agents must guarantee that generated source code, database migrations, seed d
      - Human-in-the-loop review status
 3. **Patent & Trade Secret Insulation:**
    - Never extract or hardcode proprietary trade secrets or unreleased internal IP into client-side code bundles or public repositories.
+4. **Sole Author Git Attribution:**
+   - Git commits and push histories must reflect strictly one author (the primary committer/developer).
+   - Prohibit automated or manual injection of `Co-authored-by:` trailers or multiple author tags to preserve clear, singular legal provenance.

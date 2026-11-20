@@ -118,6 +118,9 @@ To prevent project rot, spaghetti code, and cluttered workspaces:
 
 - **File Cleanup Protocol:** Before declaring any phase complete, the agent must run an automated workspace check (`git status --porcelain` or folder sweep). Any file not part of the explicit deliverables must be deleted immediately.
 - **Code Conciseness:** Write self-documenting code with clear type annotations. Avoid redundant boilerplate comments that simply restate syntax.
+- **Git Commit & Push Attribution Mandate (Sole Author Enforcement):**
+  - **Strictly Exactly One Author:** All git commits and push operations must record strictly **one single author** corresponding to the repository owner / primary developer (`git config user.name` and `git config user.email`).
+  - **Absolute Ban on Co-Authors:** Never include `Co-authored-by:` trailers, multiple author lines, or auxiliary agent signatures in git commit messages or push payloads. All git history must reflect sole authorship.
 
 ---
 
