@@ -212,6 +212,7 @@ When orchestrating a full software project from `.specs/` and `.agent/state.md`,
 ### 4. GitHub Phase Branching & Smart Skip Policy
 - **Standard Phases (`risk: standard` | `critical`):** Upon passing Gate 3 (Verification), commit all phase changes (Sole Author, zero `Co-authored-by:`), create/checkout a dedicated phase branch (e.g., `phase/02-db-auth`), and push to `origin` (`git push -u origin phase/02-db-auth`).
 - **Smart Skip (`risk: trivial`):** For simple, deterministic boilerplate phases that cannot fail (e.g., initial directory layout, static lint config), skip creating a separate remote branch and batch the commit into the next standard phase's branch, while still checking off the tasks in `.agent/state.md`.
+- **Auto-Approvable Git Command Hygiene:** Never chain `git add`, `git commit`, and `git push` into one command string, and avoid varying `-C <path>` flags on `git push` when inside the active workspace. Always run `git push -u origin <branch>` (or `git push origin main`) as a clean standalone command so prefix-based "Always Allow" approvals persist across phases without re-prompting.
 
 ### 5. Mandatory Localhost Preview Gate (Pre-Deploy)
 - **Hard Stop Before Deployment:** Never execute cloud deployment (`vercel`, `fly deploy`, `docker push`, `terraform apply`) until the application is verified on `http://localhost:<PORT>`.
