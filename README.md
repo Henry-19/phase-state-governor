@@ -1,6 +1,16 @@
 # Phase-State Governor Skill
 
+[![GitHub Stars](https://img.shields.io/github/stars/Henry-19/phase-state-governor?style=for-the-badge&logo=github)](https://github.com/Henry-19/phase-state-governor)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
+[![skills.sh](https://img.shields.io/badge/skills.sh-Compatible-0a0a0a.svg?style=for-the-badge)](https://skills.sh)
+
 A modular, production-grade agentic engineering skill that guides AI coding agents through document-driven phases with mathematical determinism, in-place state synchronization, clean code enforcement, legal/compliance guardrails, and context/token optimization.
+
+## ⚡ Quick Install
+
+```bash
+npx skills add Henry-19/phase-state-governor -g
+```
 
 ---
 
