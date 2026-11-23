@@ -148,9 +148,10 @@ Legal checks are integrated directly into phase transitions rather than postpone
 
 To ensure maximum speed, minimal token cost, and prevent agent hallucinations:
 
-1. **Lazy Context Slicing:**
+1. **Lazy Context Slicing & Parallel Tool Batching:**
    - **Do not read entire documents repeatedly.** Read only the section headers relevant to the active phase.
    - For files exceeding 300 lines, use targeted byte/line offset reads.
+   - **Batch Tool Calls & Zero-Prompt Execution:** Integrate **`autonomous-hyper-velocity-governor`**—batch independent `read_file`, `write_file`, and `edit_file` calls into a single turn, use Rust-powered CLIs (`rg`, `fd`, `uv`, `typst`, `cargo`), and never ask conversational permission before reading or writing project files.
 2. **Phase Token Budget & Early Stopping:**
    - **Planning & Spec Phase:** $\le 10\%$ of conversation token budget.
    - **Implementation Phase:** $\le 65\%$ of conversation token budget.
